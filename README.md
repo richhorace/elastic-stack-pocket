@@ -17,22 +17,22 @@ Tested with the latest version of the Docker daemon.
 ## Requirements Pocket App
 Assumption is that you already have created a Pocket App and have Authenticated. 
 
-If not, following instructions:
+If you have an account, but do not have an App, following instructions:
 
 - [Pocket Developer Site](https://getpocket.com/developer/)
 - [Create New App](https://getpocket.com/developer/apps/new)
 - [Authenticate](https://getpocket.com/developer/docs/authentication)
 
-If you do not have an Pocket Account, start at Step 3 and use the Sample Data Example in Step 4.
+If you do not have an Pocket Account, jump down to **Launch Containers, Ingest Data**
 
-## Getting Started
+## Getting Started - Data Prep
 1. Retrieving Pocket API Data
 
-    **Best Practices** 
+    ####Best Practice#### 
 
     **Retrieving Full List:** Whenever possible, you should use the since parameter, or count and and offset parameters when retrieving a user's list. After retrieving the list, you should store the current time (which is provided along with the list response) and pass that in the next request for the list. This way the server only needs to return a small set (changes since that time) instead of the user's entire list every time.
 
-    `get-pocket-curl.sh` script perform a "complete" pull data which returns all data about each item, including tags, images, authors, videos, and more. JSON file is saved to `./data/raw` folder
+    `get-pocket-curl.sh` script performs a "complete" pull data which returns all data about each item, including tags, images, authors, videos, and more. JSON file is saved to `./data/raw` folder
 
     ``` 
     sh ./files/get-pocket-curl.sh [since]
@@ -48,7 +48,8 @@ If you do not have an Pocket Account, start at Step 3 and use the Sample Data Ex
     python prep_pocket.py
     ```
 
-3. Launch Containers and Test Connections
+## Launch Stack to Ingest Data
+1. Launch Containers and Test Connections
 
 	Docker Compose Ingest will launch Elasticsearch, Logstash and Kibana office Elastic images.
 	`docker-compose -f docker-compose-ingest.yml up`
@@ -57,7 +58,7 @@ If you do not have an Pocket Account, start at Step 3 and use the Sample Data Ex
 	- Kibana ([http://localhost:5601](http://localhost:5601)) 
 	- Elasticsearch ([http://localhost:9200](http://localhost:9200))
 
-4. Ingest Data with Logstash
+2. Ingest Data with Logstash
 	- Logstash will Ingest `*.logs` in `./files/data/prepped` 
 	- Creates fields based on uri for given_domain and resolved_domain
 	- Transforms UNIX Timestamps to ISO Dates for time_added and time_updated
@@ -69,10 +70,23 @@ If you do not have an Pocket Account, start at Step 3 and use the Sample Data Ex
 	Using Sample Data:
 	Copy sample-pocket.log `cp ./files/data/sample-pocket.log ./files/data/prepped/`
 
-5. Visualize in Kibana
-
-	Access Kibana by going to `http://localhost:5601` in a web browser
+3. Visualize in Kibana
+	- Access Kibana by going to `http://localhost:5601` in a web browser
 	- Create Index Pattern:  Click the **Management** tab >> **Index Patterns** tab >> **Create New**. Specify `pocket` as the index pattern name and click **Create** to define the index pattern. (Leave the **Use event times to create index names** box unchecked and the Time Field as @timestamp)
 	- Load dashboard into Kibana: Click the **Management** tab >> **Saved Objects** tab >> **Import**, and select `Kibana-Dashboards.json`
 	- Open dashboard: Click on **Dashboard** tab and open `Pocket Overview` dashboard
 
+4. Shutdown Stack
+	You can stop the Stack without loosing data. The ingested data will persist until you remove the volume.
+	```docker-compose -f docker-compose-ingest.yml down```
+
+## Launch Stack to Review Data
+	You can start the Stack with only Elasticsearch and Kibana to view existing data.
+	Start: ```docker-compose -f docker-compose-minimal.yml up```
+	Stop: ```docker-compose -f docker-compose-minimal.yml down```
+
+## ToDo
+1. Cleanup prep_pocket.py 
+1. Add Section for generating a Pocket API consumer key at https://getpocket.com/developer/apps/new
+1. Add Filebeat at Ingest Option
+1. Process to Update Pocket Data
