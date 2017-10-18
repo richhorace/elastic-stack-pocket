@@ -12,6 +12,7 @@
 As you can see, I've been a long time user of Pocket even before it was rebranded from Read It Later.
 
 This repository will retrieve data from Pocket API, prep data for ingest into the Elastic Stack (Elasticsearch, Logstash, Kibana) using Elastic's official docker images and default ports. 
+
 Tested with the latest version of the Docker daemon.
 
 ## Requirements Pocket App
@@ -28,7 +29,7 @@ If you do not have an Pocket Account, jump down to **Launch Containers, Ingest D
 ## Getting Started - Data Prep
 1. Retrieving Pocket API Data
 
-    ####Best Practice#### 
+    **Best Practice** 
 
     **Retrieving Full List:** Whenever possible, you should use the since parameter, or count and and offset parameters when retrieving a user's list. After retrieving the list, you should store the current time (which is provided along with the list response) and pass that in the next request for the list. This way the server only needs to return a small set (changes since that time) instead of the user's entire list every time.
 
@@ -77,17 +78,18 @@ If you do not have an Pocket Account, jump down to **Launch Containers, Ingest D
 	- Open dashboard: Click on **Dashboard** tab and open `Pocket Overview` dashboard
 
 4. Shutdown Stack
-	You can stop the Stack without loosing data. The ingested data will persist until you remove the volume.
+You can stop the Stack without loosing data. The ingested data will persist until you remove the volume.
+
 	```docker-compose -f docker-compose-ingest.yml down```
 
 ## Launch Stack to Review Data
-	You can start the Stack with only Elasticsearch and Kibana to view existing data.
-	
+You can start the Stack with only Elasticsearch and Kibana to view existing data.
+
 	Start: ```docker-compose -f docker-compose-minimal.yml up```
 	Stop: ```docker-compose -f docker-compose-minimal.yml down```
 
 ## ToDo
-1. Cleanup prep_pocket.py 
-1. Add Section for generating a Pocket API consumer key at https://getpocket.com/developer/apps/new
-1. Add Filebeat at Ingest Option
-1. Process to Update Pocket Data
+- Cleanup prep_pocket.py 
+- Add Section for generating a Pocket API consumer key at https://getpocket.com/developer/apps/new
+- Add Filebeat at Ingest Option
+- Process to Update Pocket Data
