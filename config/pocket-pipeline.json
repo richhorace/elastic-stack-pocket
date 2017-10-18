@@ -1,0 +1,53 @@
+{
+    "description": "pocket api",
+    "processors": [      
+      {
+        "grok": {
+          "field": "given_url",
+          "patterns": [
+            "%{URIPROTO}://%{URIHOST:given_domain}"
+          ],
+          "ignore_failure": true
+        }
+      },
+      {
+        "grok": {
+          "field": "resolved_url",
+          "patterns": [
+            "%{URIPROTO}://%{URIHOST:resolved_domain}"
+          ],
+          "ignore_failure": true
+        }
+      },      
+      {
+        "date": {
+          "field": "time_added",
+          "target_field": "@timestamp",
+          "formats": ["UNIX"],
+          "timezone": "UTC"
+        }
+      },
+      {
+        "set": {
+          "field": "time_added",
+          "value": "{{@timestamp}}",
+          "ignore_failure": true
+        }
+      },
+      {
+        "date": {
+          "field": "time_updated",
+          "target_field": "time_updated",
+          "formats": ["UNIX"],
+          "timezone": "UTC"
+        }
+      },
+      {
+        "set": {
+          "field": "time_updated",
+          "value": "{{time_updated}}",
+          "ignore_failure": true
+        }
+      }
+    ]
+}

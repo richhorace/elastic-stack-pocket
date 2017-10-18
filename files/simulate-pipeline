@@ -1,0 +1,46 @@
+curl -XPOST -u elastic:changeme "http://localhost:9200/_ingest/pipeline/_simulate" -d'
+{
+  "pipeline": {
+    "processors" : [
+      {
+        "date": {
+          "field": "time_added",
+          "target_field": "@timestamp",
+          "formats": ["UNIX"],
+          "timezone": "UTC"
+        }
+      },
+      {
+        "set": {
+          "field": "time_added",
+          "value": "{{@timestamp}}",
+          "ignore_failure": true
+        }
+      },
+      {
+        "date": {
+          "field": "time_updated",
+          "target_field": "time_updated",
+          "formats": ["UNIX"],
+          "timezone": "UTC"
+        }
+      },
+      {
+        "set": {
+          "field": "time_updated",
+          "value": "{{time_updated}}",
+          "ignore_failure": true
+        }
+      }            
+    ]
+  },
+  "docs": [
+    {
+      "_source": {
+        "time_added": "1293840000",
+        "time_updated": "1293841000",
+        "item_id": "1488294125"
+      }
+    }
+  ]
+}'

@@ -82,6 +82,7 @@ If you do not have an Pocket Account, jump down to **Launch Containers, Ingest D
 
 ## Launch Stack to Review Data
 	You can start the Stack with only Elasticsearch and Kibana to view existing data.
+	
 	Start: ```docker-compose -f docker-compose-minimal.yml up```
 	Stop: ```docker-compose -f docker-compose-minimal.yml down```
 
