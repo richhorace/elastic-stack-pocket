@@ -30,6 +30,7 @@ If you do not have an Pocket Account you can follow the Sample Data Example.
 1. Retrieving Pocket API Data
 
 **Best Practices** 
+
 **Retrieving Full List:** Whenever possible, you should use the since parameter, or count and and offset parameters when retrieving a user's list. After retrieving the list, you should store the current time (which is provided along with the list response) and pass that in the next request for the list. This way the server only needs to return a small set (changes since that time) instead of the user's entire list every time.
 
 `get-pocket-curl.sh` script perform a "complete" pull data which returns all data about each item, including tags, images, authors, videos, and more. JSON file is saved to `./data/raw` folder
