@@ -14,7 +14,7 @@ Tested with the latest version of the Docker daemon.
 
 As you can see, I've been a long time user of Pocket even before it was rebranded from Read It Later.
 
-## Getting Started
+## Requirements Pocket App
 Assumption is that you already have created a Pocket App and have Authenticated. 
 
 If not, following instructions:
@@ -27,7 +27,8 @@ If not, following instructions:
 
 If you do not have an Pocket Account you can follow the Sample Data Example.
 
-## 1. Retrieving Pocket API Data
+## Getting Started
+1. Retrieving Pocket API Data
 
     **Best Practices** 
 
@@ -39,7 +40,7 @@ If you do not have an Pocket Account you can follow the Sample Data Example.
     sh ./files/get-pocket-curl.sh [since]
     ```
 
-## 2. Prep Pocket Data 
+2. Prep Pocket Data 
 
     ``` 
     sh ./files/get-pocket-curl.sh [since]
