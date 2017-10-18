@@ -13,7 +13,14 @@ As you can see, I've been a long time user of Pocket even before it was rebrande
 
 This repository will retrieve data from Pocket API, prep data for ingest into the Elastic Stack (Elasticsearch, Logstash, Kibana) using Elastic's official docker images and default ports. 
 
-Tested with the latest version of the Docker daemon.
+##### Versions
+
+Example has been tested in following versions:
+- Elasticsearch 5.6.3
+- Filebeat 5.6.3
+- Kibana 5.6.3
+- Docker 17.09.0-ce
+- Docker Compose 1.16.1
 
 ## Requirements Pocket App
 Assumption is that you already have created a Pocket App and have Authenticated. 
