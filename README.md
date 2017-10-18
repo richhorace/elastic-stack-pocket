@@ -41,8 +41,20 @@ If you do not have an Pocket Account you can follow the Sample Data Example.
     ```
 
 2. Prep Pocket Data 
+	`prep_pocket.py` script will iterate over the user list: 
+	- Removes images and videos
+	- Removes item_id from tags and authors
+	- Create a JSON log file ready for Logstash
 
     ``` 
-    sh ./files/get-pocket-curl.sh [since]
+    python prep_pocket.py
     ```
 
+3. Launch Containers and Test Connections
+	Docker Compose Ingest will launch Elasticsearch, Logstash and Kibana office Elastic images.
+	`docker-compose -f docker-compose-ingest.yml up`
+
+	Test Connections:
+	The credentials are always `elastic` and `changeme` 
+	- Kibana ([http://localhost:5601](http://localhost:5601)) 
+	- Elasticsearch ([http://localhost:9200](http://localhost:9200))
