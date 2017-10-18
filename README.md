@@ -23,7 +23,7 @@ If not, following instructions:
 - [Create New App](https://getpocket.com/developer/apps/new)
 - [Authenticate](https://getpocket.com/developer/docs/authentication)
 
-If you do not have an Pocket Account you can follow the Sample Data Example.
+If you do not have an Pocket Account, start at Step 3 and use the Sample Data Example in Step 4.
 
 ## Getting Started
 1. Retrieving Pocket API Data
@@ -41,8 +41,8 @@ If you do not have an Pocket Account you can follow the Sample Data Example.
 2. Prep Pocket Data 
 	`prep_pocket.py` script will iterate over the user list: 
 	- Removes images and videos
-	- Removes item_id from tags and authors
-	- Create a JSON log file ready for Logstash
+	- Creates list for tags and authors while removing item_id
+	- Dumps JSON lines to log file ready for Logstash
 
     ``` 
     python prep_pocket.py
@@ -56,3 +56,24 @@ If you do not have an Pocket Account you can follow the Sample Data Example.
 	Credentials are always `elastic` and `changeme` 
 	- Kibana ([http://localhost:5601](http://localhost:5601)) 
 	- Elasticsearch ([http://localhost:9200](http://localhost:9200))
+
+4. Ingest Data with Logstash
+	- Logstash will Ingest `*.logs` in `./files/data/prepped` 
+	- Creates fields based on uri for given_domain and resolved_domain
+	- Transforms UNIX Timestamps to ISO Dates for time_added and time_updated
+	- Outputs to Elasticsearch to Pocket Index while setting document_id to item_id 
+
+	Copy logs:
+	``` cp ./files/data/raw/*.log ./files/data/prepped/ ```
+
+	Using Sample Data:
+	Copy sample-pocket.log `cp ./files/data/sample-pocket.log ./files/data/prepped/`
+
+5. Visualize in Kibana
+* Access Kibana by going to `http://localhost:5601` in a web browser
+* Click the **Management** tab >> **Index Patterns** tab >> **Create New**. Specify `pocket` as the index pattern name and click **Create** to define the index pattern. (Leave the **Use event times to create index names** box unchecked and the Time Field as @timestamp)
+* Load dashboard into Kibana
+    * Click the **Management** tab >> **Saved Objects** tab >> **Import**, and select `Kibana-Dashboards.json`
+* Open dashboard
+    * Click on **Dashboard** tab and open `Pocket Overview` dashboard
+
