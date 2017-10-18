@@ -85,8 +85,8 @@ You can stop the Stack without loosing data. The ingested data will persist unti
 ## Launch Stack to Review Data
 You can start the Stack with only Elasticsearch and Kibana to view existing data.
 
-	Start: ```docker-compose -f docker-compose-minimal.yml up```
-	Stop: ```docker-compose -f docker-compose-minimal.yml down```
+	Start: `docker-compose -f docker-compose-minimal.yml up`
+	Stop: `docker-compose -f docker-compose-minimal.yml down`
 
 ## ToDo
 - Cleanup prep_pocket.py 
