@@ -1,14 +1,13 @@
 # Pocket Data with Elastic Stack & Docker
 
-This repository will retrieve data from Pocket API, prep data for ingest into the Elastic Stack (Elasticsearch, Logstash, Kibana) using Elastic's official docker images and default ports. Tested with the latest version of the Docker daemon.
+This repository will retrieve data from Pocket API, prep data for ingest into the Elastic Stack (Elasticsearch, Logstash, Kibana) using Elastic's official docker images and default ports. 
+Tested with the latest version of the Docker daemon.
 
-## Get Analytics for Your Pocket Data
-Get the most our your Pocket Data!!
-
+## Get the most our your Pocket Data!!
 - Date Added
 - Unique URLs
 - Unique Given Domain
-- Unique Resolved 
+- Unique Resolved Domain
 - Tag Cloud
 
 ![](screenshot.png)
