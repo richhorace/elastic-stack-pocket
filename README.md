@@ -18,7 +18,9 @@ As you can see, I've been a long time user of Pocket even before it was rebrande
 Assumption is that you already have created a Pocket App and have Authenticated. 
 If not, following instructions:
 [Pocket Developer Site](https://getpocket.com/developer/)
+
 [Create New App](https://getpocket.com/developer/apps/new)
+
 [Authenticate](https://getpocket.com/developer/docs/authentication)
 
 If you do not have an Pocket Account you can follow the Sample Data Example.
