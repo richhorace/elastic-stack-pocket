@@ -70,10 +70,10 @@ If you do not have an Pocket Account, start at Step 3 and use the Sample Data Ex
 	Copy sample-pocket.log `cp ./files/data/sample-pocket.log ./files/data/prepped/`
 
 5. Visualize in Kibana
-* Access Kibana by going to `http://localhost:5601` in a web browser
-* Click the **Management** tab >> **Index Patterns** tab >> **Create New**. Specify `pocket` as the index pattern name and click **Create** to define the index pattern. (Leave the **Use event times to create index names** box unchecked and the Time Field as @timestamp)
-* Load dashboard into Kibana
+	- Access Kibana by going to `http://localhost:5601` in a web browser
+	- Click the **Management** tab >> **Index Patterns** tab >> **Create New**. Specify `pocket` as the index pattern name and click **Create** to define the index pattern. (Leave the **Use event times to create index names** box unchecked and the Time Field as @timestamp)
+	- Load dashboard into Kibana
     * Click the **Management** tab >> **Saved Objects** tab >> **Import**, and select `Kibana-Dashboards.json`
-* Open dashboard
+	- Open dashboard
     * Click on **Dashboard** tab and open `Pocket Overview` dashboard
 
