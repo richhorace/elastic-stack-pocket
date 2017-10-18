@@ -1,0 +1,33 @@
+#Mac OS
+.DS_Store
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+env/
+build/
+dist/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Sphinx documentation
+docs/_build/
+
+# pyenv
+.python-version
+
+# Logs
+logs/*
+
+# Processed File
+config/logstash/data/*.logs
+files/data/prepped/
+files/data/raw
+demo-get-pocket-curl.sh
