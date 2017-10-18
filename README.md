@@ -51,10 +51,9 @@ If you do not have an Pocket Account you can follow the Sample Data Example.
     ```
 
 3. Launch Containers and Test Connections
+
 	Docker Compose Ingest will launch Elasticsearch, Logstash and Kibana office Elastic images.
 	`docker-compose -f docker-compose-ingest.yml up`
-
-	Test Connections:
 
 	Credentials are always `elastic` and `changeme` 
 	- Kibana ([http://localhost:5601](http://localhost:5601)) 
