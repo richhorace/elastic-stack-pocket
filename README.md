@@ -1,17 +1,21 @@
 # Pocket Data with Elastic Stack & Docker
+This repository will retrieve data from Pocket API, prep data for ingest into the Elastic Stack (Elasticsearch, Logstash, Kibana) using Elastic's official docker images and default ports. 
 
-## Get the most our your Pocket Data!!
+## Instead of this
+![](pocket.png)
+
+## Wouldn't this be better!
+**Get the most our your Pocket Data!!**
 - Date Added
 - Unique URLs
 - Unique Given Domain
 - Unique Resolved Domain
 - Tag Cloud
 
-![](screenshot.png)
+![](kibana.png)
 
 As you can see, I've been a long time user of Pocket even before it was rebranded from Read It Later.
 
-This repository will retrieve data from Pocket API, prep data for ingest into the Elastic Stack (Elasticsearch, Logstash, Kibana) using Elastic's official docker images and default ports. 
 
 ##### Versions
 
@@ -43,7 +47,8 @@ If you do not have an Pocket Account, jump down to **Launch Containers, Ingest D
     `get-pocket-curl.sh` script performs a "complete" pull data which returns all data about each item, including tags, images, authors, videos, and more. JSON file is saved to `./data/raw` folder
 
     ``` 
-    sh ./files/get-pocket-curl.sh [since]
+    cd files
+    sh ./get-pocket-curl.sh [since]
     ```
 
 2. Prep Pocket Data 
@@ -53,6 +58,7 @@ If you do not have an Pocket Account, jump down to **Launch Containers, Ingest D
 	- Dumps JSON lines to log file ready for Logstash
 
     ``` 
+    cd files
     python prep_pocket.py
     ```
 
