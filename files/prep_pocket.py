@@ -1,67 +1,74 @@
-#/usr/bin/env python2
+#/usr/bin/env python3
+
 import glob
 import json
-import os
-from pprint import pprint
+import logging
+
+from files.local import DATA_DIR, LOG_PATH
 
 
-def parse_data(files):
-    for file in files:
-        with open(file) as data_file:    
-            data  =  json.load(data_file)
-        output_log = open(file.replace(".json",".log"), 'w')
-        error_log = open (file.replace(".json",".err"),'w')
-        total_cnt = 0
-        miss_resolved_id = 0
+logging.basicConfig(level=logging.INFO,
+                    format='{"timestamp": "%(asctime)s", "level": "%(levelname)s", %(message)s}',
+                    filename=LOG_PATH,
+                    filemode='a+')
 
-        for v in data['list'].itervalues():
+
+def parse_files(fnames):
+    for fname in fnames:
+        data = read_file(fname)
+        parse_data(data, fname)
+
+
+def read_file(fname):
+    with open(fname, 'r') as f:
+        return json.load(f)
+
+
+def parse_data(data, fname=None):
+    total = 0
+    resolved_id_missing = 0
+
+    for v in data['list'].itervalues():
+        # Remove unnecessary data
+        if v.get('image'):
+            del v['image']
+        if v.get('images'):
+            del v['images']
+        if v.get('videos'):
+            del v['videos']
+
+        if v.get('resolved_id', 0) == 0:
+            resolved_id_missing += 1
+            logging.error('"message": {}, "filename": {}'.format(json.dumps(v), fname))
+            continue
+
+        if v.get('authors'):
             try:
-                del v['image']
-            except KeyError:
-                pass
-            try:
-                del v['images']
-            except KeyError:
-                pass
-            try:
-                del v['videos']
-            except KeyError:
-                pass
-            if v.get('resolved_id'):
-                if v['resolved_id'] == 0:
-                    # print "Resolved Id is 0"
-                    miss_resolved_id += 1
-                    error_log.write(json.dumps(v) + '\n')        
-                    continue    
-            else:
-                # print "No Resolved Id"
-                miss_resolved_id += 1
-                error_log.write(json.dumps(v) + '\n')        
-                continue
+                author_data = v['authors'].values()
+                v['authors'] = [(a['name'].encode('utf-8')) for a in author_data]
+            except BaseException:
+                print(v['authors'])
 
-            if v.get('authors'):
-                try:
-                    author_data = v['authors'].values()
-                    v['authors'] = [(i['name'].encode('utf-8')) for i in author_data]
-                except BaseException:
-                    print v['authors']
-            if v.get('tags'):
-                try:
-                    tag_data = v['tags'].values()
-                    v['tags'] = [a.encode('utf-8') for a in v['tags'].keys()]            
-                except BaseException:
-                    print  v['tags']   
-            new_json  =  (json.dumps(v))
-            output_log.write(new_json + '\n')
-            total_cnt += 1
-        print "Total",file,total_cnt
-        print "Missing Resolved Id",file, miss_resolved_id
+        if v.get('tags'):
+            try:
+                tag_data = v['tags'].keys()
+                v['tags'] = [a.encode('utf-8') for a in tag_data]
+            except BaseException:
+                print(v['tags'])
+
+        logging.info('"message": {}, "filename": {}'.format(json.dumps(v), fname))
+        total += 1
+
+    print("Total ({}): {}".format(fname, total))
+    print("Missing Resolved Id ({}): {}".format(fname, resolved_id_missing))
 
 
 def main():
-    path = './data/raw/'
-    files = glob.glob('./' + path + '/*.json')
-    parse_data(files)
+    # Get local JSON file names
+    file_names = glob.glob('{}/*.json'.format(DATA_DIR))
+    # Parse all JSON files
+    parse_files(file_names)
+
 
 main()
 
