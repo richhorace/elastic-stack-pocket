@@ -5,14 +5,14 @@ This repository will retrieve data from Pocket API, prep data for ingest into th
 ![](pocket.png)
 
 ## Wouldn't this be better!
+![](kibana.png)
+
 **Get the most our your Pocket Data!!**
 - Date Added
 - Unique URLs
 - Unique Given Domain
 - Unique Resolved Domain
 - Tag Cloud
-
-![](kibana.png)
 
 As you can see, I've been a long time user of Pocket even before it was rebranded from Read It Later.
 
