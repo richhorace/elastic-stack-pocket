@@ -20,11 +20,11 @@ As you can see, I've been a long time user of Pocket even before it was rebrande
 ##### Versions
 
 Example has been tested in following versions:
-- Elasticsearch 5.6.3
-- Filebeat 5.6.3
-- Kibana 5.6.3
-- Docker 17.09.0-ce
-- Docker Compose 1.16.1
+- Elasticsearch 6.4.2
+- Filebeat 6.4.2
+- Kibana 6.4.2
+- Docker 18.09.0-ce-beta1
+- Docker Compose 1.22.0
 
 ## Requirements Pocket App
 Assumption is that you already have created a Pocket App and have Authenticated. 
@@ -68,9 +68,10 @@ If you do not have an Pocket Account, jump down to **Launch Containers, Ingest D
 	Docker Compose Ingest will launch Elasticsearch, Logstash and Kibana office Elastic images.
 	`docker-compose -f docker-compose-ingest.yml up`
 
-	Credentials are always `elastic` and `changeme` 
-	- Kibana ([http://localhost:5601](http://localhost:5601)) 
 	- Elasticsearch ([http://localhost:9200](http://localhost:9200))
+	- Logstash  ([http://localhost:9600](http://localhost:9600))
+	- Kibana ([http://localhost:5601](http://localhost:5601)) 
+	
 
 2. Ingest Data with Logstash
 	- Logstash will Ingest `*.logs` in `./files/data/prepped` 
