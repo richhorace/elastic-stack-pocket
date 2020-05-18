@@ -44,18 +44,18 @@ def parse_data(files):
                     author_data = v['authors'].values()
                     v['authors'] = [(i['name'].encode('utf-8')) for i in author_data]
                 except BaseException:
-                    print v['authors']
+                    print(v['authors'])
             if v.get('tags'):
                 try:
                     tag_data = v['tags'].values()
                     v['tags'] = [a.encode('utf-8') for a in v['tags'].keys()]            
                 except BaseException:
-                    print  v['tags']   
+                    print(v['tags']   )
             new_json  =  (json.dumps(v))
             output_log.write(new_json + '\n')
             total_cnt += 1
-        print "Total",file,total_cnt
-        print "Missing Resolved Id",file, miss_resolved_id
+        print("Total",file,total_cnt)
+        print("Missing Resolved Id",file, miss_resolved_id)
 
 
 def main():
