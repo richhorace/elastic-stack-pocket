@@ -23,8 +23,9 @@ docs/_build/
 # pyenv
 .python-version
 
-# Logs
+# Local Dev
 logs/*
+config.py
 
 # Processed File
 config/logstash/data/*.logs
