@@ -2,10 +2,10 @@
 This repository will retrieve data from Pocket API, prep data for ingest into the Elastic Stack (Elasticsearch, Logstash, Kibana) using Elastic's official docker images and default ports. 
 
 ## Instead of this
-![](getpocket.gif)
+![](images/getpocket.gif)
 
 ## Wouldn't this be better!
-![](kibana.gif)
+![](images/kibana.gif)
 
 **Get the most our your Pocket Data!!**
 - Date Added

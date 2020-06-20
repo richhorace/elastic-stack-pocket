@@ -24,11 +24,12 @@ docs/_build/
 .python-version
 
 # Local Dev
-logs/*
 config.py
+scrap_notes.md
+test/
 
 # Processed File
 config/logstash/data/*.logs
-files/data/prepped/
-files/data/raw
+data/logs/
+data/raw
 demo-get-pocket-curl.sh
