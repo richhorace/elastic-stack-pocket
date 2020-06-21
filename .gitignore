@@ -35,4 +35,5 @@ test/
 config/logstash/data/*.logs
 data/logs/
 data/raw
+data/reprocess
 demo-get-pocket-curl.sh

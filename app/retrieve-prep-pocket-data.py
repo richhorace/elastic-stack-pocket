@@ -81,7 +81,8 @@ def parse_data(data,fname):
             except BaseException:
                 print(v['tags'])
 
-
+        fn = {"filename": fname }        
+        v.update(fn)
         logging.info('"pocket_data": {}'.format(json.dumps(v)))
         total += 1
 
