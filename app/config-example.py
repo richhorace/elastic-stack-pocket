@@ -1,0 +1,2 @@
+access_token=POCKET_ACCESS_TOKEN
+consumer_key=POCKET_CONSUMER_KEY
