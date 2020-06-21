@@ -9,7 +9,7 @@ import requests
 
 from local import DATA_DIR, LOG_DIR
 
-LOG_PATH = '{}/getpocket-2.log'.format(LOG_DIR)
+LOG_PATH = '{}/getpocket.log'.format(LOG_DIR)
 
 consumer_key = config.consumer_key
 access_token = config.access_token
