@@ -3,28 +3,32 @@ import argparse
 import glob
 import json
 import logging
+import datetime
+import os
 
 from local import DATA_DIR, LOG_DIR, REPROCESS_DIR
 
-LOG_PATH = '{}/getpocket-reprocessed.log'.format(LOG_DIR)
-
-logging.basicConfig(level=logging.INFO,
-                    format='{"reprocessed": "%(asctime)s", "level": "%(levelname)s", %(message)s}',
-                    filename=LOG_PATH,
-                    filemode='a+')
 
 def parse_files(fnames):
     for fname in fnames:
+        stat = os.stat(fname)
+        f_date = str(datetime.datetime.utcfromtimestamp(stat.st_birthtime).isoformat())
         data = read_file(fname)
-        parse_data(data, fname)
+        parse_data(data, fname,f_date )
 
 
 def read_file(fname):
     with open(fname, 'r', encoding='utf-8') as f:
         return json.load(f)
 
+def parse_data(data, fname, f_date):
+    LOG_PATH = '{}/getpocket-reprocessed.log'.format(LOG_DIR)
 
-def parse_data(data, fname):
+    logging.basicConfig(level=logging.INFO,
+                        format='{"retrieved": "' + f_date +'", "level": "%(levelname)s", %(message)s}',
+                        filename=LOG_PATH,
+                        filemode='a+')
+
     total = 0
     resolved_id_missing = 0
 
