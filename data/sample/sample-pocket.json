@@ -1,0 +1,41 @@
+{
+    "status": 1,
+    "complete": 0,
+    "list": {
+      "3052749281": {
+        "item_id": "3052749281",
+        "resolved_id": "3052749281",
+        "given_url": "http://elasticstackweekly.com/",
+        "given_title": "",
+        "favorite": "0",
+        "status": "0",
+        "time_added": "1595093360",
+        "time_updated": "1595093360",
+        "time_read": "0",
+        "time_favorited": "0",
+        "sort_id": 193,
+        "resolved_title": "Elasticsearch for Data Science just got way easier",
+        "resolved_url": "https://towardsdatascience.com/elasticsearch-for-data-science-just-got-way-easier-95912d724636",
+        "excerpt": "Elasticsearch is a feature-rich, open-source search-engine built on top of Apache Lucene, one of the most important full-text search engines on the market.",
+        "is_article": "1",
+        "is_index": "0",
+        "has_video": "0",
+        "has_image": "1",
+        "word_count": "2065",
+        "authors": {
+          "136998573": {
+            "item_id": "3052749281",
+            "author_id": "136998573",
+            "name": "Mateus Picanco",
+            "url": "https://towardsdatascience.com/@mateuspicanco"
+          }
+        }
+      }
+    },
+    "error": null,
+    "search_meta": {
+      "search_type": "normal"
+    },
+    "since": 1595898407
+  }
+  
