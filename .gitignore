@@ -4,6 +4,9 @@
 __pycache__/
 *.py[cod]
 *$py.class
+app/__pycache__/
+app/*.py[cod]
+app/*$py.class
 
 # C extensions
 *.so
@@ -23,11 +26,14 @@ docs/_build/
 # pyenv
 .python-version
 
-# Logs
-logs/*
+# Local Dev
+config.py
+scrap_notes.md
+test/
 
 # Processed File
 config/logstash/data/*.logs
-files/data/prepped/
-files/data/raw
+data/logs/
+data/raw
+data/reprocess
 demo-get-pocket-curl.sh

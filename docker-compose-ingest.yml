@@ -26,8 +26,9 @@ services:
   logstash:
     image: docker.elastic.co/logstash/logstash:${ELASTIC_VERSION}
     volumes:
-      - ./config/logstash/pipeline:/usr/share/logstash/pipeline
-      - ./files/data/prepped:/usr/share/data
+      - ./elastic-stack/config/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./elastic-stack/config/logstash/pipeline:/usr/share/logstash/pipeline
+      - ./data/logs:/usr/share/data
     ports:
       - 5000:5000
       - 9600:9600
