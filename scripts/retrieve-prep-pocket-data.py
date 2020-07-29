@@ -23,8 +23,8 @@ def parse_args():
     """
     Parse command line args
     """
-    parser = argparse.ArgumentParser(description='Pass Epoch time for since.')    
-    parser.add_argument('--e', metavar='epoch', type=str, help='epoch value without milliseconds') 
+    parser = argparse.ArgumentParser(description='Pass number of days back to start from')    
+    parser.add_argument('-d', '--days_back',dest='days_back', type=int, default=1, help='Number of days back') 
     return parser.parse_args()
 
 
@@ -92,14 +92,10 @@ def parse_data(data,fname):
 
 def main():
     args = parse_args()
-    if args.e is not None:
-        since_epoch = args.e
-    else:
-        print('Epoch value not passed, will process previous day')
-        previous_day = (date.today() - timedelta(days=1))
-        previous_day = previous_day.timetuple()
-        since_epoch = str(time.mktime(previous_day))
-
+    num_days = args.days_back
+    start_date = (date.today() - timedelta(days=num_days))
+    start_date = start_date.timetuple()
+    since_epoch = str(round(time.mktime(start_date)))
     fname = since_epoch + '-data.json'
     data = get_data(since_epoch,fname)
     parse_data(data,fname)
