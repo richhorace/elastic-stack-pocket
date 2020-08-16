@@ -62,9 +62,8 @@ def parse_data(data,fname):
             del v['videos']
 
         if v.get('resolved_id', 0) == 0:
-            
             resolved_id_missing += 1
-            logging.error('"pocket_data": {}, "filename": {}'.format(json.dumps(v)))
+            logging.error('"pocket_data": {}'.format(json.dumps(v)))
             continue
 
         if v.get('authors'):
