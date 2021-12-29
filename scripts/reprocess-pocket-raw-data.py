@@ -11,10 +11,11 @@ from local import DATA_DIR, LOG_DIR, REPROCESS_DIR
 
 def parse_files(fnames):
     for fname in fnames:
-        stat = os.stat(fname)
-        f_date = str(datetime.datetime.utcfromtimestamp(stat.st_birthtime).isoformat())
+        split_path_fname = fname.split("/")
+        split_fname = int(split_path_fname[-1].split("-")[0])
+        f_date = str(datetime.datetime.utcfromtimestamp(split_fname).isoformat())
         data = read_file(fname)
-        parse_data(data, fname,f_date )
+        parse_data(data, fname, f_date)
 
 
 def read_file(fname):
@@ -75,7 +76,6 @@ def parse_data(data, fname, f_date):
 def main():
     # Get local JSON file names
     file_names = glob.glob('{}/*.json'.format(REPROCESS_DIR))
-    # Parse all JSON files
     parse_files(file_names)
 
 main()
